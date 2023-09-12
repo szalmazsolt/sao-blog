@@ -5,3 +5,8 @@
 <p>
   <%= link_to "Back to index", blog_posts_path %>
 </p>
+<p>
+  <%= link_to "Edit", edit_blog_post_path(@blog_post) %>
+
+  <%= link_to "Delete", blog_post_path(@blog_post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+</p>
