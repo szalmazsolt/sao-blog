@@ -1,0 +1,16 @@
+<%= form_with(model: locals[:blog_post]) do |f| %>
+
+  <%= render "shared/form_errors", locals: { ar_object: f.object } %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, autofocus: true %>
+  </div>
+  
+  <div>
+    <%= f.label :body, "Post text" %>
+    <%= f.text_area :body, rows: 10 %>
+  </div>
+  
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,7 @@
+<% if locals[:ar_object].errors.any? %>
+  <% locals[:ar_object].errors.full_messages.each do |error_msg| %>
+    <div>
+      <%= error_msg %>
+    </div>
+  <% end %>
+<% end %>
