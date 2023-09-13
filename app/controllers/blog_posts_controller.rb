@@ -3,7 +3,7 @@ class BlogPostsController < ApplicationController
   before_action :set_blog_post, except: [:index, :new, :create]
 
   def index
-    @blog_posts = BlogPost.order("created_at desc")
+    @blog_posts = BlogPost.latest_first
   end
 
   def show
