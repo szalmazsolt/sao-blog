@@ -1,6 +1,7 @@
 class BlogPostsController < ApplicationController
 
   before_action :set_blog_post, except: [:index, :new, :create]
+  before_action :requires_login, except: [:index, :show]
 
   def index
     @blog_posts = BlogPost.latest_first
@@ -36,7 +37,7 @@ class BlogPostsController < ApplicationController
 
   def destroy
     @blog_post.destroy
-    redirect_to blog_posts_url
+    redirect_to blog_posts_url, notice: "Blog post was deleted"
   end
 
   private

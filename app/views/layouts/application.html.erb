@@ -13,15 +13,23 @@
   <body>
 
     <div>
+    <p>
       <%= flash[:alert] %>
+    </p>
+    <p>
       <%= flash[:notice] %>
+    </p>
     </div>
 
-    <nav>
-      <% if user_logged_in? %>
-        <p>You are logged in</p>
-      <% end %>
-    </nav>
+    <div>
+      <nav>
+        <% if user_logged_in? %>
+          <%= link_to "Create new post", new_blog_post_path %>
+          <%= link_to "Profile", user_path(session[:user_id]) %>
+          <%= button_to "Logout", users_logout_path, method: :delete %>
+        <% end %>
+      </nav>
+    </div>
 
     <%= yield %>
   </body>

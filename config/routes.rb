@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   post "users", to: "sessions#create"
   delete "users/logout", to: "sessions#destroy"
 
+  resources :users, only: [:show, :edit, :update]
+
   match "*path", to: "blog_posts#index", via: :all
 end

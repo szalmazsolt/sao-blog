@@ -5,6 +5,9 @@
 <p>
   <%= link_to "Back to index", blog_posts_path %>
 </p>
-<p>
-  <%= link_to "Edit", edit_blog_post_path(@blog_post) %>
-</p>
+
+<% if user_logged_in? %>
+  <p>
+    <%= link_to "Edit", edit_blog_post_path(@blog_post) %>
+  </p>
+<% end %>

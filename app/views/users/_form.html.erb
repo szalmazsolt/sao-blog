@@ -1,0 +1,16 @@
+<%= form_with(model: locals[:user]) do |f| %>
+
+  <%= render "shared/form_errors", locals: { ar_object: locals[:user] } %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit %>
+
+<% end %>
