@@ -5,7 +5,7 @@
 <%= render "form", locals: { blog_post: @blog_post } %>
 
 <p>
-  <%= button_to "Delete", blog_post_path(@blog_post), method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+  <%= button_to "Delete", blog_post_path(@blog_post), method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "bg-red-500 text-white py-3 px-5 rounded" %>
 </p>
 
 <p>
