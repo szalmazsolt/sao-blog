@@ -2,5 +2,10 @@
 
 <% @blog_posts.each do |blog_post| %>
   <h2><%= link_to blog_post.title, blog_post %></h2>
+  <% if blog_post.draft? %>
+    <p class="bg-gray-200 p-3 rounded">Draft</p>
+  <% elsif blog_post.scheduled? %>
+    <p class="bg-blue-200 p-3 rounded">Scheduled</p>
+  <% end %>
   <p><%= blog_post.body %></p>
 <% end %>

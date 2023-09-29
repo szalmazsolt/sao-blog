@@ -1,10 +1,10 @@
 class BlogPostsController < ApplicationController
 
-  before_action :set_blog_post, except: [:index, :new, :create]
   before_action :requires_login, except: [:index, :show]
+  before_action :set_blog_post, except: [:index, :new, :create]
 
   def index
-    @blog_posts = BlogPost.latest_first
+    @blog_posts = user_logged_in? ? BlogPost.sort_by_status.latest_first : BlogPost.published
   end
 
   def show
@@ -43,12 +43,17 @@ class BlogPostsController < ApplicationController
   private
 
     def set_blog_post
-      @blog_post = BlogPost.find(params[:id])
+      begin
+        @blog_post = user_logged_in? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to root_url
+      end
+      
     end
 
     def blog_post_params
       params
         .require(:blog_post)
-        .permit(:title, :body)
+        .permit(:title, :body, :published_at)
     end
 end

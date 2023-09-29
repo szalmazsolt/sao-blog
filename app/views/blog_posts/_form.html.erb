@@ -11,6 +11,11 @@
     <%= f.label :body, "Post text" %>
     <%= f.text_area :body, rows: 10 %>
   </div>
+
+  <div>
+    <%= f.label :published_at %>
+    <%= f.datetime_select :published_at, include_blank: true, selected: Time.now %>
+  </div>
   
   <%= f.submit class: "bg-slate-400 text-white py-3 px-5 rounded cursor-pointer" %>
 <% end %>

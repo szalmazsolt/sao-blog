@@ -3,9 +3,22 @@ class BlogPost < ApplicationRecord
   validates :title, presence: true
   validates :body, length: { minimum: 3 }
 
-  def self.latest_first
-    order("created_at desc")
+  scope :draft, -> { where(published_at: nil) }
+  scope :published, -> { where("published_at <= ?", Time.now) }
+  scope :scheduled, -> { where("published_at > ?", Time.now) }
+  scope :latest_first, -> { order("updated_at desc") }
+  scope :sort_by_status, -> { order("published_at asc") }
+
+  def draft?
+    published_at.nil?
   end
 
+  def published?
+    published_at? && published_at <= Time.now
+  end
+
+  def scheduled?
+    published_at? && published_at > Time.now
+  end
 
 end
