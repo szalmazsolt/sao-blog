@@ -1,6 +1,6 @@
 <h1>Blog Posts (<%= @blog_posts.size %>)</h1>
 
-<% @blog_posts.each do |blog_post| %>
+<% @posts.each do |blog_post| %>
   <h2><%= link_to blog_post.title, blog_post %></h2>
   <% if blog_post.draft? %>
     <p class="bg-gray-200 p-3 rounded">Draft</p>
@@ -9,3 +9,7 @@
   <% end %>
   <p><%= blog_post.content %></p>
 <% end %>
+
+<section class="my-16">
+  <%== pagy_nav(@pagy) %>
+</section>

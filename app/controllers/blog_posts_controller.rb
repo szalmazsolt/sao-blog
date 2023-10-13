@@ -4,7 +4,9 @@ class BlogPostsController < ApplicationController
   before_action :set_blog_post, except: [:index, :new, :create]
 
   def index
-    @blog_posts = user_logged_in? ? BlogPost.sort_by_status.latest_first : BlogPost.published
+    # fail
+    @blog_posts = user_logged_in? ? BlogPost.sort_by_status : BlogPost.published
+    @pagy, @posts = pagy(@blog_posts)
   end
 
   def show

@@ -8,8 +8,8 @@ class BlogPost < ApplicationRecord
   scope :draft, -> { where(published_at: nil) }
   scope :published, -> { where("published_at <= ?", Time.now) }
   scope :scheduled, -> { where("published_at > ?", Time.now) }
-  scope :latest_first, -> { order("updated_at desc") }
-  scope :sort_by_status, -> { order("published_at NULLS LAST") }
+  # scope :latest_first, -> { order("updated_at DESC") }
+  scope :sort_by_status, -> { order("published_at DESC NULLS FIRST") }
 
   def draft?
     published_at.nil?
