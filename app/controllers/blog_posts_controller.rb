@@ -5,7 +5,7 @@ class BlogPostsController < ApplicationController
 
   def index
     # fail
-    @blog_posts = user_logged_in? ? BlogPost.sort_by_status : BlogPost.published
+    @blog_posts = user_logged_in? ? BlogPost.sort_by_status : BlogPost.published.latest_first
     @pagy, @posts = pagy(@blog_posts)
   end
 
