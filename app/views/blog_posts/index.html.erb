@@ -10,6 +10,10 @@
   <p><%= blog_post.content %></p>
 <% end %>
 
-<section class="my-16">
-  <%== pagy_nav(@pagy) %>
-</section>
+<% if @pagy.count > @pagy.items %>
+  <section class="my-16">
+    <%#= console %>
+    <%# Double equal means that the code is safe render HTML, while single equal will sanitize the code %>
+    <%== pagy_nav(@pagy) %>
+  </section>
+<% end %>

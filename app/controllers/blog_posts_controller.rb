@@ -7,6 +7,13 @@ class BlogPostsController < ApplicationController
     # fail
     @blog_posts = user_logged_in? ? BlogPost.sort_by_status : BlogPost.published.latest_first
     @pagy, @posts = pagy(@blog_posts)
+    rescue
+      # redirect to root and set a url paramter called 'page' to 1
+      redirect_to root_url(page: 1)
+
+      # set the params hash's page key to 1 and run the method again from the start
+      # params[:page] = 1
+      # retry
   end
 
   def show
